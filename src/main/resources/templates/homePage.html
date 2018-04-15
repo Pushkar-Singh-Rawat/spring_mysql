@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- xmlns:xml namespace -->
+<head>
+<meta charset="UTF-8" />
+<title>Recipe Web App</title>
+<!-- Latest compiled and minified CSS -->
+<script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-2/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous"
+	th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}">
+<!-- Latest compiled and minified JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-2/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"
+	th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+
+</head>
+<body>
+	<div class="container-fluid" style="margin-top: 20px">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h1 class="panel-title">Top food recipes!</h1>
+					</div>
+					<div class="panel-body">
+						<div class="table-responsive"
+							th:if="${not #lists.isEmpty(recipes)}">
+							<!-- if recipes returns null nothing would populate -->
+							<table class="table table-hover">
+								<thead class="thead-inverse">
+									<tr>
+										<th>ID</th>
+										<th>Descrition</th>
+										<th>View</th>
+										<th>Update</th>
+										<th>delete</th>
+									</tr>
+								</thead>
+								<!-- <tr th:remove="all">
+									'all' rows would be removed while running via sts
+									<td th:text="${recipe.recipeID}">ID</td>
+									<td th:text="${recipe.description}">Description</td>
+								</tr>
+								<tr th:remove="all">
+									just to view how the template looks
+									<td th:text="${recipe.recipeID}">ID</td>
+									<td th:text="${recipe.description}">Description</td>
+								</tr> -->
+								<tr th:each="recipe:${recipes}">
+									<!-- looping would happen for every recipe row being populated -->
+									<td th:text="${recipe.recipeID}">ID</td>
+									<td th:text="${recipe.description}">Description</td>
+									<td ><a th:href="@{'/recipe/'+${recipe.recipeID}+'/show/'}">View</a></td>
+									<td ><a th:href="@{'/recipe/'+${recipe.recipeID}+'/update/'}">Update</a></td>
+									<td ><a th:href="@{'/recipe/'+${recipe.recipeID}+'/delete/'}">Delete</a></td>
+								</tr>
+
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+
+</html>
