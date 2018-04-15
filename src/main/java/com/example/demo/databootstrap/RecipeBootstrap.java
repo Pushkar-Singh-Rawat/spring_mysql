@@ -25,7 +25,7 @@ import com.example.demo.respositories.RecipeRepository;
 import com.example.demo.respositories.UnitOfMeasurementRepository;
 
 @Component
-
+@Profile("default")
 public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
 	private RecipeRepository recipeRepository;
